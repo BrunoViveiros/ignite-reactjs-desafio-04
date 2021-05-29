@@ -9,9 +9,18 @@ import { FormHandles, SubmitHandler } from '@unform/core';
 interface ModalEditFoodProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleUpdateFood: (data: FormData) => void;
-  editingFood: (data: FormData) => void;
+  handleUpdateFood: (data: FoodData) => void;
+  editingFood: FoodData;
 }
+
+type FoodData = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  available: boolean;
+  image: string;
+};
 
 function ModalEditFood({
   isOpen,
@@ -21,7 +30,7 @@ function ModalEditFood({
 }: ModalEditFoodProps) {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+  const handleSubmit: SubmitHandler<FoodData> = async (data) => {
     handleUpdateFood(data);
     setIsOpen();
   };

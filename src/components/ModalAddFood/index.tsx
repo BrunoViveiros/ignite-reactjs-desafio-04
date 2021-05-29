@@ -9,13 +9,22 @@ import Input from '../Input';
 interface ModalAddFoodProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleAddFood: (data: FormData) => void;
+  handleAddFood: (data: FoodData) => void;
 }
+
+type FoodData = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  available: boolean;
+  image: string;
+};
 
 function ModalAddFood({ isOpen, setIsOpen, handleAddFood }: ModalAddFoodProps) {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+  const handleSubmit: SubmitHandler<FoodData> = async (data) => {
     handleAddFood(data);
     setIsOpen();
   };
